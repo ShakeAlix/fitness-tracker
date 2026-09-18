@@ -51,7 +51,7 @@ export function ExerciseCard({ exercise, onUpdate, onDelete }: Props) {
   }
 
   return (
-    <div className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+    <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-4 shadow-sm">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0 flex-1">
           {editingHeader ? (
@@ -61,18 +61,14 @@ export function ExerciseCard({ exercise, onUpdate, onDelete }: Props) {
               onChange={(e) => setDraftName(e.target.value)}
               onBlur={saveName}
               onKeyDown={(e) => e.key === 'Enter' && (e.currentTarget as HTMLInputElement).blur()}
-              className="h-8 w-full rounded-md border border-neutral-300 px-2 text-base font-semibold dark:border-neutral-700 dark:bg-neutral-950"
+              className="h-8 w-full rounded-md border border-neutral-700 bg-neutral-950 px-2 text-base font-semibold text-neutral-100 outline-none focus:border-orange-500"
             />
           ) : (
-            <h3 className="truncate text-base font-semibold text-neutral-900 dark:text-neutral-100">
-              {exercise.name}
-            </h3>
+            <h3 className="truncate text-base font-semibold text-neutral-100">{exercise.name}</h3>
           )}
           <div className="mt-1 flex flex-wrap items-center gap-2">
             <TypeBadge type={exercise.type} />
-            <span className="text-xs text-neutral-500 dark:text-neutral-400">
-              Range {repRangeLabel(exercise.type)}
-            </span>
+            <span className="text-xs text-neutral-500">Range {repRangeLabel(exercise.type)}</span>
           </div>
         </div>
         <div className="flex shrink-0 items-center gap-1">
@@ -82,7 +78,7 @@ export function ExerciseCard({ exercise, onUpdate, onDelete }: Props) {
               setDraftName(exercise.name)
               setEditingHeader((v) => !v)
             }}
-            className="rounded-md p-1.5 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-700 dark:hover:bg-neutral-800"
+            className="rounded-md p-1.5 text-neutral-500 hover:bg-neutral-800 hover:text-orange-400"
             aria-label={`Edit ${exercise.name}`}
           >
             <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
@@ -94,7 +90,7 @@ export function ExerciseCard({ exercise, onUpdate, onDelete }: Props) {
             onClick={() => {
               if (confirm(`Delete "${exercise.name}"?`)) onDelete()
             }}
-            className="rounded-md p-1.5 text-neutral-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/40"
+            className="rounded-md p-1.5 text-neutral-500 hover:bg-red-950/40 hover:text-red-500"
             aria-label={`Delete ${exercise.name}`}
           >
             <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
@@ -124,29 +120,29 @@ export function ExerciseCard({ exercise, onUpdate, onDelete }: Props) {
       )}
 
       <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
-        <div className="rounded-lg bg-neutral-50 px-3 py-2 dark:bg-neutral-800/60">
-          <div className="text-xs text-neutral-500 dark:text-neutral-400">Weight</div>
-          <div className="font-medium text-neutral-900 dark:text-neutral-100">
-            {formatWeight(exercise.weightKg)} kg <span className="text-neutral-400">/</span>{' '}
+        <div className="rounded-xl bg-neutral-800/60 px-3 py-2">
+          <div className="text-xs text-neutral-500">Weight</div>
+          <div className="font-medium text-neutral-100">
+            {formatWeight(exercise.weightKg)} kg <span className="text-neutral-500">/</span>{' '}
             {formatWeight(kgToLb(exercise.weightKg))} lb
           </div>
         </div>
-        <div className="rounded-lg bg-neutral-50 px-3 py-2 dark:bg-neutral-800/60">
-          <div className="text-xs text-neutral-500 dark:text-neutral-400">Reps</div>
-          <div className="font-medium text-neutral-900 dark:text-neutral-100">
+        <div className="rounded-xl bg-neutral-800/60 px-3 py-2">
+          <div className="text-xs text-neutral-500">Reps</div>
+          <div className="font-medium text-neutral-100">
             {exercise.currentReps} / {repRangeLabel(exercise.type)}
           </div>
         </div>
-        <div className="col-span-2 rounded-lg bg-neutral-50 px-3 py-2 dark:bg-neutral-800/60">
-          <div className="text-xs text-neutral-500 dark:text-neutral-400">Days on current rep count</div>
-          <div className="font-medium text-neutral-900 dark:text-neutral-100">
+        <div className="col-span-2 rounded-xl bg-neutral-800/60 px-3 py-2">
+          <div className="text-xs text-neutral-500">Days on current rep count</div>
+          <div className="font-medium text-neutral-100">
             {days} {days === 1 ? 'day' : 'days'}
           </div>
         </div>
       </div>
 
       <div className="mt-4">
-        <div className="flex gap-1 rounded-lg bg-neutral-100 p-1 dark:bg-neutral-800">
+        <div className="flex gap-1 rounded-xl bg-neutral-800 p-1">
           <button type="button" onClick={() => setTab('weight')} className={tabClass(tab === 'weight')}>
             Weight
           </button>
@@ -162,15 +158,13 @@ export function ExerciseCard({ exercise, onUpdate, onDelete }: Props) {
         ) : (
           <div className="mt-3 space-y-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-neutral-500 dark:text-neutral-400">
-                Current reps
-              </label>
+              <label className="mb-1 block text-xs font-medium text-neutral-500">Current reps</label>
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
                   onClick={() => bumpReps(-1)}
                   aria-label="Decrease reps"
-                  className="h-11 w-11 shrink-0 rounded-lg border border-neutral-300 text-lg font-medium active:bg-neutral-100 dark:border-neutral-700 dark:active:bg-neutral-800"
+                  className="h-11 w-11 shrink-0 rounded-xl border border-neutral-700 text-lg font-medium text-neutral-200 active:bg-neutral-800"
                 >
                   −
                 </button>
@@ -179,35 +173,33 @@ export function ExerciseCard({ exercise, onUpdate, onDelete }: Props) {
                   inputMode="numeric"
                   value={exercise.currentReps}
                   onChange={(e) => onUpdate({ currentReps: Math.max(0, Number(e.target.value) || 0) })}
-                  className="h-11 w-16 shrink-0 rounded-lg border border-neutral-300 text-center text-base dark:border-neutral-700 dark:bg-neutral-950"
+                  className="h-11 w-16 shrink-0 rounded-xl border border-neutral-700 bg-neutral-950 text-center text-base text-neutral-100 outline-none focus:border-orange-500"
                 />
                 <button
                   type="button"
                   onClick={() => bumpReps(1)}
                   aria-label="Increase reps"
-                  className="h-11 w-11 shrink-0 rounded-lg border border-neutral-300 text-lg font-medium active:bg-neutral-100 dark:border-neutral-700 dark:active:bg-neutral-800"
+                  className="h-11 w-11 shrink-0 rounded-xl border border-neutral-700 text-lg font-medium text-neutral-200 active:bg-neutral-800"
                 >
                   +
                 </button>
                 <button
                   type="button"
                   onClick={bumpRepsAndResetDate}
-                  className="h-11 min-w-[9.5rem] flex-1 whitespace-nowrap rounded-lg border border-neutral-300 px-3 text-xs font-medium text-neutral-600 hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                  className="h-11 min-w-[9.5rem] flex-1 whitespace-nowrap rounded-xl border border-orange-500/50 px-3 text-xs font-medium text-orange-400 hover:bg-orange-500/10"
                 >
                   +1 &amp; reset date
                 </button>
               </div>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-neutral-500 dark:text-neutral-400">
-                Start date
-              </label>
+              <label className="mb-1 block text-xs font-medium text-neutral-500">Start date</label>
               <input
                 type="date"
                 value={exercise.startDate}
                 max={todayIso()}
                 onChange={(e) => onUpdate({ startDate: e.target.value })}
-                className="h-11 w-full rounded-lg border border-neutral-300 px-3 text-base dark:border-neutral-700 dark:bg-neutral-950"
+                className="h-11 w-full rounded-xl border border-neutral-700 bg-neutral-950 px-3 text-base text-neutral-100 outline-none focus:border-orange-500 [color-scheme:dark]"
               />
             </div>
           </div>
@@ -218,9 +210,7 @@ export function ExerciseCard({ exercise, onUpdate, onDelete }: Props) {
 }
 
 function tabClass(active: boolean) {
-  return `flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-    active
-      ? 'bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-neutral-50'
-      : 'text-neutral-500 dark:text-neutral-400'
+  return `flex-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+    active ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-sm' : 'text-neutral-400'
   }`
 }

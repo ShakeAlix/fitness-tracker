@@ -32,7 +32,7 @@ export function AddExerciseForm({ onAdd }: Props) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="w-full rounded-xl border border-dashed border-neutral-300 py-3 text-sm font-medium text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-600 dark:hover:text-neutral-200"
+        className="w-full rounded-2xl border border-dashed border-neutral-700 py-3 text-sm font-medium text-neutral-400 hover:border-orange-500/60 hover:text-orange-400"
       >
         + Add exercise
       </button>
@@ -40,47 +40,40 @@ export function AddExerciseForm({ onAdd }: Props) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-3 rounded-xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900"
-    >
+    <form onSubmit={handleSubmit} className="space-y-3 rounded-2xl border border-neutral-800 bg-neutral-900 p-4">
       <div>
-        <label className="mb-1 block text-xs font-medium text-neutral-500 dark:text-neutral-400">
-          Exercise name
-        </label>
+        <label className="mb-1 block text-xs font-medium text-neutral-500">Exercise name</label>
         <input
           autoFocus
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. Barbell Row"
-          className="h-11 w-full rounded-lg border border-neutral-300 px-3 text-base dark:border-neutral-700 dark:bg-neutral-950"
+          className="h-11 w-full rounded-xl border border-neutral-700 bg-neutral-950 px-3 text-base text-neutral-100 outline-none focus:border-orange-500"
         />
       </div>
       <div>
-        <span className="mb-1 block text-xs font-medium text-neutral-500 dark:text-neutral-400">Type</span>
+        <span className="mb-1 block text-xs font-medium text-neutral-500">Type</span>
         <div className="flex gap-2">
           <TypeToggleButton type="compound" active={type === 'compound'} onClick={() => setType('compound')} />
           <TypeToggleButton type="isolation" active={type === 'isolation'} onClick={() => setType('isolation')} />
         </div>
       </div>
       <div>
-        <span className="mb-1 block text-xs font-medium text-neutral-500 dark:text-neutral-400">
-          Starting weight
-        </span>
+        <span className="mb-1 block text-xs font-medium text-neutral-500">Starting weight</span>
         <WeightField weightKg={weightKg} onChange={setWeightKg} />
       </div>
       <div className="flex gap-2 pt-1">
         <button
           type="submit"
-          className="flex-1 rounded-lg bg-neutral-900 py-2.5 text-sm font-medium text-white dark:bg-neutral-100 dark:text-neutral-900"
+          className="flex-1 rounded-xl bg-gradient-to-r from-orange-500 to-red-600 py-2.5 text-sm font-medium text-white shadow-sm"
         >
           Add exercise
         </button>
         <button
           type="button"
           onClick={reset}
-          className="rounded-lg border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-600 dark:border-neutral-700 dark:text-neutral-300"
+          className="rounded-xl border border-neutral-700 px-4 py-2.5 text-sm font-medium text-neutral-300"
         >
           Cancel
         </button>

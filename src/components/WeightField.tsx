@@ -42,12 +42,12 @@ export function WeightField({ weightKg, onChange }: Props) {
         step="0.5"
         value={text}
         onChange={(e) => handleTextChange(e.target.value)}
-        className="h-11 min-w-0 flex-1 rounded-lg border border-neutral-300 px-3 text-base dark:border-neutral-700 dark:bg-neutral-950"
+        className="h-11 min-w-0 flex-1 rounded-xl border border-neutral-700 bg-neutral-950 px-3 text-base text-neutral-100 outline-none focus:border-orange-500"
       />
       <select
         value={unit}
         onChange={(e) => handleUnitChange(e.target.value as WeightUnit)}
-        className="h-11 rounded-lg border border-neutral-300 bg-white px-2 text-base dark:border-neutral-700 dark:bg-neutral-950"
+        className="h-11 rounded-xl border border-neutral-700 bg-neutral-950 px-2 text-base text-neutral-100 outline-none focus:border-orange-500"
         aria-label="Weight unit"
       >
         <option value="kg">kg</option>
